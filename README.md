@@ -33,6 +33,13 @@ The zip file of the source code can be downloaded via github. Then the following
 
 ``cd Deep_Catalog-main``
 
-All the file should be moved to the same path of RAiSD-AI by the command:
+All the files should be moved to the path of RAiSD-AI by the command:
 
-``mv * __PathToRAiSD-AI__``
+``mv * PathToRAiSD-AI``
+
+## A quick example
+The users can easily use commandlines to generate simulation datasets, train deep learning models and test. Here is an example to generate datasets simulating the genomic data of Homo Sapiens with a specific genetic scenario and train and test the deep learning model based on the datasets:
+
+``sh sr-toolchain.sh -m 3 -a 10 -o Example -N Example -n 1000 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10``
+
+The simulation datasets will be generated in the path _Example/RAW_, where both the subfolders _TRAIN_ and _TEST_ consists of two folders, _NEUTRAL_ and _SWEEP_, containing the neutral simulations and the simulations with sweeps.
