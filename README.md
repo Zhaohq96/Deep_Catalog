@@ -35,4 +35,4 @@ The zip file of the source code can be downloaded via github. Then the following
 
 All the file should be moved to the same path of RAiSD-AI by the command:
 
-``mv * _PathToRAiSD-AI_``
+``mv * __PathToRAiSD-AI__``
