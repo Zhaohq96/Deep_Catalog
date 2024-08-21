@@ -1,7 +1,7 @@
 # Deep_Catalog
 
 ## About
-Deep_Catalog is a deep-learning-model generator for detecting selective sweeps based on stdpopsim and RAiSD-AI. It utilizes stdpopsim to simulate the datasets and uses RAiSD-AI to train the models.
+Deep_Catalog is a deep-learning-model generator for detecting selective sweeps based on stdpopsim and RAiSD-AI. It utilizes stdpopsim to simulate the datasets and uses RAiSD-AI to train and test the models.
 
 ## Enviromental Setup
 Deep_Catalog requires stdpopsim and RAiSD-AI for data and model generations. According to our many failed experiences, we recommend to use Anaconda for building a virtual environment to avoid package dependencies. The installation of Anaconda can be found via https://www.anaconda.com/
@@ -43,3 +43,8 @@ The users can easily use commandlines to generate simulation datasets, train dee
 ``sh sr-toolchain.sh -m 3 -a 10 -o Example -N Example -n 1000 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10``
 
 The simulation datasets will be generated in the path _Example/RAW_, where both the subfolders _TRAIN_ and _TEST_ consists of two folders, _NEUTRAL_ and _SWEEP_, containing the neutral simulations and the simulations with sweeps.
+
+The terminal will display the information of input data generation, training process and testing results. The input data generated for deep learning model will be in the folders _RAiSD_Images.ExampleTrainingData_ (data for training) and _RAiSD_Images.ExampleTrainingData_ (data for testing). The training model will be stored in _RAiSD_Modle.ExampleModel_.
+
+## In-tool Help
+Deep_Catalog provides five optional modes for users, including 1) generating the deep learning model based on user-specified datasets, 2) testing a dataset using an already-existing training model, 3) generating and testing the deep learning model based on user-specified datasets, 4) scanning the whole genome using an already-existing training model, 5) generating the deep learning model based on user-specified datasets and scanning the data using the training model.
