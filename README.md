@@ -50,6 +50,7 @@ The terminal will display the information of input data generation, training pro
 Deep_Catalog provides five optional modes for users, including 1) generating the deep learning model based on user-specified datasets, 2) testing a dataset using an already-existing training model, 3) generating and testing the deep learning model based on user-specified datasets, 4) scanning the whole genome using an already-existing training model, 5) generating the deep learning model based on user-specified datasets and scanning the data using the training model.
 
 To check the description by the command:
+
 ``sh sr-toolchain.sh -h``
 
 The generated message is the following. 
