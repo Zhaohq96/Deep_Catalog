@@ -26,3 +26,9 @@ To deactivate virtual environment:
 
 ``conda deactivate``
 
+## Source Code Download and File Path Reassignment
+The zip file of the source code can be downloaded via github. Then the following command can be used to unzip the file and to be in the path of main folder.
+
+``unzip Deep_Catalog-main.zip``
+
+``cd Deep_Catalog-main``
