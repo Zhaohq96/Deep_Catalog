@@ -47,6 +47,10 @@ All the files should be moved to the path of RAiSD-AI by the command:
 
 ``mv * PathToRAiSD-AI``
 
+```
+ wget https://github.com/Zhaohq96/Deep_Catalog/archive/refs/heads/master.zip; unzip master.zip; cd Deep_Catalog-main/; mv README.md README-DC.md; mv * ../; cd ..; rm -r Deep_Catalog-main/;
+```
+
 ## A quick example
 The users can easily use commandlines to generate simulation datasets, train deep learning models and test. Here are examples to generate datasets simulating the genomic data of Homo Sapiens with a specific genetic scenario and train and test the deep learning model for different tasks.
 
