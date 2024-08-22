@@ -23,7 +23,7 @@ To install the packages that RAiSD-AI requires in the same virtual environment b
 RAiSD-AI can be downloaded and compiled via https://github.com/alachins/raisd-ai, or use the command directly on the terminal:
 
 ```
-mkdir RAiSD-AI; cd RAiSD-AI; wget https://github.com/alachins/RAiSD-AI/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-master; ./compile-RAiSD-AI.sh
+ mkdir RAiSD-AI; cd RAiSD-AI; wget https://github.com/alachins/RAiSD-AI/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-master; ./compile-RAiSD-AI.sh
 ```
 
 To deactivate virtual environment:
