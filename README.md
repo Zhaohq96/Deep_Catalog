@@ -6,8 +6,6 @@ Deep_Catalog is a deep-learning-model generator for detecting selective sweeps b
 ## Enviromental Setup
 Deep_Catalog requires stdpopsim and RAiSD-AI for data and model generations. According to our many failed experiences, we recommend to use Anaconda for building a virtual environment to avoid package dependencies. The installation of Anaconda can be found via https://www.anaconda.com/
 
-RAiSD-AI can be downloaded and compiled via https://github.com/alachins/raisd-ai.
-
 To build virtual environment with stdpopsim by command:
 
 ``conda create -n myenv -c conda-forge -c bioconda python=3.8 stdpopsim bcftools slim=4.1 msprime=1.2.0``
@@ -21,6 +19,12 @@ To activate virtual environment:
 To install the packages that RAiSD-AI requires in the same virtual environment by the command:
 
 ``conda install pytorch=2.0.1 torchvision=0.15.2 protobuf tensorflow=2.8 keras=2.8 numpy h5py tensorboard=2.8 pillow=7.0.0``
+
+RAiSD-AI can be downloaded and compiled via https://github.com/alachins/raisd-ai, or use the command directly on the terminal:
+
+'''
+mkdir RAiSD-AI; cd RAiSD-AI; wget https://github.com/alachins/RAiSD-AI/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-master; ./compile-RAiSD-AI.sh
+'''
 
 To deactivate virtual environment:
 
