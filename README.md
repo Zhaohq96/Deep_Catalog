@@ -57,31 +57,31 @@ The users can easily use commandlines to generate simulation datasets, train dee
 ### Generate the training datasets and train the deep learning model (Mode 0)
 
 ```
-sh sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
+sh sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 10 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
 
 ### Generate the testing datasets for classfication and test on an existing trained model (Mode 1)
 
 ```
-sh sr-toolchain.sh -m 1 -a 10 -o Mode1 -N Mode1 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model
+sh sr-toolchain.sh -m 1 -a 10 -o Mode1 -N Mode1 -n 10 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model
 ```
 
 ### Generate the testing datasets for scanning and test on an existing trained model (Mode 2)
 
 ```
-sh sr-toolchain.sh -m 2 -a 10 -o Mode1 -N Mode1 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model
+sh sr-toolchain.sh -m 2 -a 10 -o Mode1 -N Mode1 -n 10 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model
 ```
 
 ### Generate the datasets, train and test the deep learning model (Mode 3)
 
 ```
-sh sr-toolchain.sh -m 3 -a 10 -o Mode3 -N Mode3 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
+sh sr-toolchain.sh -m 3 -a 10 -o Mode3 -N Mode3 -n 10 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
 
 ### Generate the training datasets and train the deep learning model (Mode 0)
 
 ```
-sh sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
+sh sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 10 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
 
 
