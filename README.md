@@ -121,9 +121,9 @@ sh sr-toolchain.sh -m 4 -a 10 -o Mode4 -N Mode4 -n 50 -d OutOfAfrica_3G09 -g Pyr
 
 
 
-The simulation datasets will be generated in the path _Example/RAW_, where both the subfolders _TRAIN_ and _TEST_ consists of two folders, _NEUTRAL_ and _SWEEP_, containing the neutral simulations and the simulations with sweeps.
+The simulation datasets will be generated in the path _Mode*/RAW_, where both the subfolders _TRAIN_ and _TEST_ consists of two folders, _NEUTRAL_ and _SWEEP_, containing the neutral simulations and the simulations with sweeps.
 
-The terminal will display the information of input data generation, training process and testing results. The input data generated for deep learning model will be in the folders _RAiSD_Images.ExampleTrainingData_ (data for training) and _RAiSD_Images.ExampleTrainingData_ (data for testing). The training model will be stored in _RAiSD_Modle.ExampleModel_.
+The terminal will display the information of input data generation, training process and testing results. The input data generated for deep learning model will be in the folders _RAiSD_Images.Mode*TrainingData_ (data for training) and _RAiSD_Images.Mode*TestingData_ (data for testing). The training model will be stored in _RAiSD_Modle.Mode*Model_.
 
 ## In-tool Help
 Deep_Catalog provides five optional modes for users, including 1) generating the deep learning model based on user-specified datasets, 2) testing a dataset using an already-existing training model, 3) generating and testing the deep learning model based on user-specified datasets, 4) scanning the whole genome using an already-existing training model, 5) generating the deep learning model based on user-specified datasets and scanning the data using the training model.
