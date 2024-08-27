@@ -69,7 +69,7 @@ sh sr-toolchain.sh -m 1 -a 10 -o Mode1 -N Mode1 -n 50 -d OutOfAfrica_3G09 -g Pyr
 ### Generate the testing datasets for scanning and test on an existing trained model (Mode 2)
 
 ```
-sh sr-toolchain.sh -m 2 -a 10 -o Mode1 -N Mode1 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model
+sh sr-toolchain.sh -m 2 -a 10 -o Mode1 -N Mode1 -n 1 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model -L 500000
 ```
 
 ### Generate the datasets, train and test the deep learning model (Mode 3)
@@ -78,10 +78,10 @@ sh sr-toolchain.sh -m 2 -a 10 -o Mode1 -N Mode1 -n 50 -d OutOfAfrica_3G09 -g Pyr
 sh sr-toolchain.sh -m 3 -a 10 -o Mode3 -N Mode3 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
 
-### Generate the training datasets and train the deep learning model (Mode 0)
+### Generate the training datasets and train the deep learning model (Mode 4)
 
 ```
-sh sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
+sh sr-toolchain.sh -m 4 -a 10 -o Mode4 -N Mode4 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10 -L 500000
 ```
 
 
