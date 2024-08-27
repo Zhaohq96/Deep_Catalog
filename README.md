@@ -3,10 +3,10 @@
 ## About
 Deep_Catalog is a deep-learning-model generator for detecting selective sweeps based on stdpopsim and RAiSD-AI. It utilizes stdpopsim to simulate the datasets and uses RAiSD-AI to train and test the models.
 
-## Quick environment setup and running examples with commandlines
+## Quick environment setup and running examples with command lines
 It is necessary to get Anaconda installed ready. The installation of Anaconda can be found via https://www.anaconda.com/. For more details, please read the following sections.
 
-### Command for environment setup
+### Commands for environment setup
 Virtual environment installation
 ```
  conda create -n myenv -c conda-forge -c bioconda python=3.8 stdpopsim bcftools slim=4.1 msprime=1.2.0; conda activate myenv; conda install pytorch=2.0.1 torchvision=0.15.2 protobuf tensorflow=2.8 keras=2.8 numpy h5py tensorboard=2.8 pillow=7.0.0;
@@ -20,7 +20,7 @@ Deep_Catalog download
  wget https://github.com/Zhaohq96/Deep_Catalog/archive/refs/heads/master.zip; unzip master.zip; cd Deep_Catalog-main/; mv README.md README-DC.md; mv * ../; cd ..; rm -r Deep_Catalog-main/;
 ```
 
-### Command for quick examples
+### Commands for quick examples
 Generate the training datasets and train the deep learning model (Mode 0)
 ```
 sh sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
