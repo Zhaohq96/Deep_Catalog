@@ -3,6 +3,49 @@
 ## About
 Deep_Catalog is a deep-learning-model generator for detecting selective sweeps based on stdpopsim and RAiSD-AI. It utilizes stdpopsim to simulate the datasets and uses RAiSD-AI to train and test the models.
 
+## Quick environment setup and running examples with commandlines
+It is necessary to get Anaconda installed ready. The installation of Anaconda can be found via https://www.anaconda.com/. For more details, please read the following sections.
+
+### Command for environment setup
+Virtual environment installation
+```
+ conda create -n myenv -c conda-forge -c bioconda python=3.8 stdpopsim bcftools slim=4.1 msprime=1.2.0; conda activate myenv; conda install pytorch=2.0.1 torchvision=0.15.2 protobuf tensorflow=2.8 keras=2.8 numpy h5py tensorboard=2.8 pillow=7.0.0;
+```
+RAiSD-AI installation and compilation
+```
+ mkdir RAiSD-AI; cd RAiSD-AI; wget https://github.com/alachins/RAiSD-AI/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-master; ./compile-RAiSD-AI.sh
+```
+Deep_Catalog download
+```
+ wget https://github.com/Zhaohq96/Deep_Catalog/archive/refs/heads/master.zip; unzip master.zip; cd Deep_Catalog-main/; mv README.md README-DC.md; mv * ../; cd ..; rm -r Deep_Catalog-main/;
+```
+
+### Command for quick examples
+Generate the training datasets and train the deep learning model (Mode 0)
+```
+sh sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
+```
+
+Generate the testing datasets for classfication and test on an existing trained model (Mode 1)
+```
+sh sr-toolchain.sh -m 1 -a 10 -o Mode1 -N Mode1 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model
+```
+
+Generate the testing datasets for scanning and test on an existing trained model (Mode 2)
+```
+sh sr-toolchain.sh -m 2 -a 10 -o Mode1 -N Mode1 -n 1 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model -L 500000
+```
+
+Generate the datasets, train and test the deep learning model (Mode 3)
+```
+sh sr-toolchain.sh -m 3 -a 10 -o Mode3 -N Mode3 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
+```
+
+Generate the training datasets and train the deep learning model (Mode 4)
+```
+sh sr-toolchain.sh -m 4 -a 10 -o Mode4 -N Mode4 -n 50 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10 -L 500000
+```
+
 ## Enviromental Setup
 Deep_Catalog requires stdpopsim and RAiSD-AI for data and model generations. According to our many failed experiences, we recommend to use Anaconda for building a virtual environment to avoid package dependencies. The installation of Anaconda can be found via https://www.anaconda.com/
 
