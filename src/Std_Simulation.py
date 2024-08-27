@@ -4,7 +4,7 @@ import sys, time, os, shutil
 import random
 import string
 
-def simulator(catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_size, num_sam, num_pop, sim_type, sel_coef, mut_gen_time, min_fre, scaling, output):
+def simulator(seed, catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_size, num_sam, num_pop, sim_type, sel_coef, mut_gen_time, min_fre, scaling, output):
     
     # Get catalog and basic information	
 	species = stdpopsim.get_species(catalog)
@@ -40,7 +40,7 @@ def simulator(catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_size, nu
 	)
 
     # Generate simulations
-	random_numbers = random.sample(range(1, 10000000), int(num_pop))
+#	random_numbers = random.sample(range(1, 10000000), int(num_pop))
 	
 	if not os.path.exists(output):
 		os.makedirs(output)
@@ -53,7 +53,7 @@ def simulator(catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_size, nu
 	
     ## Generate neutral simulations
 	if(sim_type=="neutral"):
-		for val in random_numbers:	
+		for val in range(int(seed), int(seed) + int(num_pop)):	
 			ts_sim = engine.simulate(
 			    model,
 			    contig,
@@ -68,7 +68,7 @@ def simulator(catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_size, nu
     
     ## Generate simulations with hard sweep    
 	elif(sim_type=="sweep"):
-		for val in random_numbers:
+		for val in range(int(seed), int(seed) + int(num_pop)):
 			ts_sim = engine.simulate(
 			    model,
 			    contig,

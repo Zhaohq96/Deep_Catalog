@@ -16,6 +16,7 @@ def help():
 	print("This is a python script to generate simulatons of genetic datasets in VCF format, using stdpopsim as its back-end.\n")
 	print("General parameters:")
 	
+	print("\t-i/--seed: the initial seed for simulation (int) (default: 1)")
 	print("\t-C/--catalog: a specific catalog of species (str) (default: HomSap)")
 	print("\t-d/--demography: a model of demographic history (str) (default: None)")
 	print("\t-c/--chr: a chromosome of the catalog (str) (default: chr1)")
@@ -39,6 +40,7 @@ def help():
 def main(argv):
 
     # Initializing
+	seed = 1
 	catalog = "HomSap"
 	demo_model = "None"
 	chrm = "chr1"
@@ -56,12 +58,14 @@ def main(argv):
 	scaling = 1
 	
 	
-	opts, ars = getopt.getopt(argv, "hC:d:c:g:l:r:p:P:s:n:m:S:t:f:a:o:", ["help", "catalog=", "demography=", "chr=", "gen-map=", "left=", "right=", "population=", "pop-size=", "num-sample=", "num-pop=", "sim-type=", "sele-coef=", "gen-time=", "min-freq=", "scaling-factor=", "output="])
+	opts, ars = getopt.getopt(argv, "hi:C:d:c:g:l:r:p:P:s:n:m:S:t:f:a:o:", ["help", "catalog=", "demography=", "chr=", "gen-map=", "left=", "right=", "population=", "pop-size=", "num-sample=", "num-pop=", "sim-type=", "sele-coef=", "gen-time=", "min-freq=", "scaling-factor=", "output="])
     
 	for opt, arg in opts:
 		if opt in ("-h", "--help"):
 			help()
 			return 0
+		elif opt in ("-i", "--seed"):
+			seed = arg
 		elif opt in ("-C", "--catalog"):
 			catalog = arg
 		elif opt in ("-d", "--demography"):
@@ -97,7 +101,7 @@ def main(argv):
 	
 	
     # Generate simulations	
-	Std_Simulation.simulator(catalog, demo_model, chrm, gen_map, left, right, pop, pop_size, num_sam, num_pop, sim_type, sel_coef, mut_gen_time, min_fre, scaling, output)
+	Std_Simulation.simulator(seed, catalog, demo_model, chrm, gen_map, left, right, pop, pop_size, num_sam, num_pop, sim_type, sel_coef, mut_gen_time, min_fre, scaling, output)
 	
     # Concatenate output files into one VCF file
 	Concatenate_VCF.concatenate_vcf_files(output)
