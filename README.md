@@ -6,6 +6,10 @@ Deep_Catalog is a deep-learning-model generator for detecting selective sweeps b
 ## Quick environment setup and running examples with command lines
 It is necessary to get Anaconda installed ready. The installation of Anaconda can be found via https://www.anaconda.com/. For more details, please read the following sections.
 
+After installation of Anaconda, you can use the following command to activate base environment.
+``source path_to_anaconda3/bin/activate``
+where 'path_to_anaconda3' is the path of Anaconda folder.
+
 ### Commands for environment setup
 Virtual environment installation
 ```
