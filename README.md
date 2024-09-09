@@ -65,6 +65,7 @@ This command is to generate 20 simulations of YRI population with the demographi
 Deep_Catalog requires stdpopsim and RAiSD-AI for data and model generations. According to our many failed experiences, we recommend to use Anaconda for building a virtual environment to avoid package dependencies. The installation of Anaconda can be found via https://www.anaconda.com/
 
 To activate base environment of anaconda by command:
+
 ``source path_to_anaconda3/bin/activate``
 
 where 'path_to_anaconda3' is the path of Anaconda folder.
