@@ -30,39 +30,39 @@ Deep_Catalog download
 #### Basic information about simulations
 In the following examples, we simulated Yoruba (YRI) populations using the three-population out-of-Africa demographic model (OutOfAfrica_3G09). The simulations focus on chromosome 1, applying the YRI-specific recombination map from pyrho (PyrhoYRI_GRCh38). The simulated genome spans 1,000,000 base pairs, ranging from position 0 to 1,000,000. Each population consists of 64 individuals. For selection dataset, a selective sweep introduced at the center of each simulation. From the center of each simulation, 128 SNPs were extracted and converted into images to serve as input data for RAiSD-AI.
 
-#### Example1: Generate the training datasets and train the deep learning model (Mode 0)
+#### Example1: Generating a binary classifier to identify selective sweeps (Mode 0)
 ```
 bash sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
 This command is to generate 20 aforementioned simulations for each class (neutrality and sweep) and then train a CNN model. 
 
 
-#### Example2: Generate the testing datasets for classfication and test on an existing trained model (Mode 1)
+#### Example2: Performing classification using a trained model  (Mode 1)
 ```
 bash sr-toolchain.sh -m 1 -a 10 -o Mode1 -N Mode1 -n 5 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model
 ```
-This command generates 5 simulations per class for classification based on the CNN model from __Example1__.
+This command generates 5 simulations per class for classification using the CNN model from __Example1__.
 
 
-#### Example3: Generate the testing datasets for scanning and test on an existing trained model (Mode 2)
+#### Example3: Utilizing a trained model to scan the simulation (Mode 2)
 ```
 bash sr-toolchain.sh -m 2 -a 10 -o Mode1 -N Mode1 -n 1 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model -L 500000
 ```
-This command is to generate 1 simulation of YRI population with the demographic model of three population out-of-Africa (OutOfAfrica_3G09) under a selective sweep and the population has 64 individuals. The simulation is of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. There are 10 genomic windows with 128 SNPs extracted and converted into images for scanning based on the model generated from the first quick command.
+This command is to generate a simulation with a selective sweep for scanning using the CNN model from __Example1__.
 
 
-#### Example4: Generate the datasets, train and test the deep learning model (Mode 3)
+#### Example4: Generating a binary classifier for detecting selective sweeps and performing classification (Mode 3)
 ```
 bash sr-toolchain.sh -m 3 -a 10 -o Mode3 -N Mode3 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
-This command is to generate 20 simulations of YRI population with the demographic model of three population out-of-Africa (OutOfAfrica_3G09) per class (neutral regions and selective sweeps) and each population has 64 individuals for CNN training, while 2 simulatons per class are generated for testing. The simulations are of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. There are 128 SNPs then extracted from the center and converted into images for CNN training and testing.
+This command is to generate 20 simulations per class for CNN training and 2 simulations per class for classification.
 
 
-#### Example5: Generate the training datasets and train the deep learning model (Mode 4)
+#### Example5: Generating a binary classifier for detecting selective sweeps and performing scanning (Mode 4)
 ```
 bash sr-toolchain.sh -m 4 -a 10 -o Mode4 -N Mode4 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10 -L 500000
 ```
-This command is to generate 20 simulations of YRI population with the demographic model of three population out-of-Africa (OutOfAfrica_3G09) per class (neutral regions and selective sweeps) and each population has 64 individuals for CNN training, while one simulation (a selective sweep) is generated for scanning. The simulations are of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. There are 128 SNPs then extracted from the center and converted into images for CNN training. For the simulation to be scanned, there are 10 genomic windows with 128 SNPs extracted and converted into images for scanning.
+This command generates 20 simulations per class for CNN training and scans a simulation with a selective sweep using the trained model.
 
 ## Enviromental Setup
 Deep_Catalog requires stdpopsim and RAiSD-AI for data and model generations. According to our many failed experiences, we recommend to use Anaconda for building a virtual environment to avoid package dependencies. The installation of Anaconda can be found via https://www.anaconda.com/
