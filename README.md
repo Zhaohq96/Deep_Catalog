@@ -34,7 +34,7 @@ In the following examples, we simulated Yoruba (YRI) populations using the three
 ```
 bash sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
-This command is to generate 20 aforementioned simulations for each class (neutrality and sweep) and then train a CNN model. 
+This command generates 20 simulations for each class (neutral and sweep) and then trains a CNN model.
 
 
 #### Example2: Performing classification using a trained model  (Mode 1)
@@ -48,14 +48,14 @@ This command generates 5 simulations per class for classification using the CNN 
 ```
 bash sr-toolchain.sh -m 2 -a 10 -o Mode1 -N Mode1 -n 1 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model -L 500000
 ```
-This command is to generate a simulation with a selective sweep for scanning using the CNN model from __Example1__.
+This command generates a simulation with a selective sweep for scanning using the CNN model from __Example1__.
 
 
 #### Example4: Generating a binary classifier for detecting selective sweeps and performing classification (Mode 3)
 ```
 bash sr-toolchain.sh -m 3 -a 10 -o Mode3 -N Mode3 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
-This command is to generate 20 simulations per class for CNN training and 2 simulations per class for classification.
+This command generates 20 simulations per class for CNN training and 2 simulations per class for classification.
 
 
 #### Example5: Generating a binary classifier for detecting selective sweeps and performing scanning (Mode 4)
