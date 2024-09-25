@@ -10,7 +10,7 @@ After installation of Anaconda, you can use the following command to activate ba
 
 ``source path_to_anaconda3/bin/activate``
 
-where _'path_to_anaconda3'_ is the path of Anaconda folder.
+where _path_to_anaconda3_ is the path of Anaconda folder.
 
 ### Commands for environment setup
 Virtual environment installation
