@@ -41,7 +41,7 @@ This command is to generate 20 aforementioned simulations for each class (neutra
 ```
 bash sr-toolchain.sh -m 1 -a 10 -o Mode1 -N Mode1 -n 5 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model
 ```
-This command is to generate 5 simulations of YRI population with the demographic model of three population out-of-Africa (OutOfAfrica_3G09) per class (neutral regions and selective sweeps) and each population has 64 individuals. The simulations are of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. There are 128 SNPs then extracted from the center and converted into images for testing based on the model generated from the first quick command.
+This command generates 5 simulations per class for classification based on the CNN model from __Example1__.
 
 
 #### Example3: Generate the testing datasets for scanning and test on an existing trained model (Mode 2)
