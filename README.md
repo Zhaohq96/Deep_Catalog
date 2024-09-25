@@ -13,15 +13,15 @@ After installation of Anaconda, you can use the following command to activate ba
 where _path_to_anaconda3_ is the path of Anaconda folder.
 
 ### Commands for environment setup
-Virtual environment installation
+__Step1:__ Virtual environment installation
 ```
  conda create -n myenv -c conda-forge -c bioconda python=3.8 stdpopsim bcftools slim=4.1 msprime=1.2.0; conda activate myenv; conda install pytorch=2.0.1 torchvision=0.15.2 protobuf tensorflow=2.8 keras=2.8 numpy h5py tensorboard=2.8 pillow=7.0.0;
 ```
-RAiSD-AI installation and compilation
+__Step2:__ RAiSD-AI installation and compilation
 ```
  mkdir RAiSD-AI; cd RAiSD-AI; wget https://github.com/alachins/RAiSD-AI/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-master; ./compile-RAiSD-AI.sh
 ```
-Deep_Catalog download
+__Step3:__ Deep_Catalog download
 ```
  wget https://github.com/Zhaohq96/Deep_Catalog/archive/refs/heads/master.zip; unzip master.zip; cd Deep_Catalog-main/; mv README.md README-DC.md; mv * ../; cd ..; rm -r Deep_Catalog-main/;
 ```
