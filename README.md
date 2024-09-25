@@ -28,7 +28,8 @@ Deep_Catalog download
 
 ### Commands for quick examples
 #### Basic information about simulations
-In the following examples, we simulated Yoruba (YRI) populations with the demographic model of three population out-of-Africa (OutOfAfrica_3G09). The simulations are of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. Each population consists of 64 individuals. 
+In the following examples, we simulated Yoruba (YRI) populations using the three-population out-of-Africa demographic model (OutOfAfrica_3G09). The simulations focus on chromosome 1, applying the YRI-specific recombination map from pyrho (PyrhoYRI_GRCh38). The simulated genome spans 1,000,000 base pairs, ranging from position 0 to 1,000,000. Each population consists of 64 individuals. For selection dataset, a selective sweep introduced at the center of each simulation. From the center of each simulation, 128 SNPs were extracted and converted into images to serve as input data for RAiSD-AI.
+
 #### Example1: Generate the training datasets and train the deep learning model (Mode 0)
 ```
 bash sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
