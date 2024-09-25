@@ -27,35 +27,37 @@ Deep_Catalog download
 ```
 
 ### Commands for quick examples
-Generate the training datasets and train the deep learning model (Mode 0)
+#### Basic information about simulations
+In the following examples, we simulated Yoruba (YRI) populations with the demographic model of three population out-of-Africa (OutOfAfrica_3G09). The simulations are of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. Each population consists of 64 individuals. 
+#### Example1: Generate the training datasets and train the deep learning model (Mode 0)
 ```
 bash sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
 This command is to generate 20 simulations of YRI population with the demographic model of three population out-of-Africa (OutOfAfrica_3G09) per class (neutral regions and selective sweeps) and each population has 64 individuals. The simulations are of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. There are 128 SNPs then extracted from the center and converted into images for CNN training.
 
 
-Generate the testing datasets for classfication and test on an existing trained model (Mode 1)
+#### Example2: Generate the testing datasets for classfication and test on an existing trained model (Mode 1)
 ```
 bash sr-toolchain.sh -m 1 -a 10 -o Mode1 -N Mode1 -n 5 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model
 ```
 This command is to generate 5 simulations of YRI population with the demographic model of three population out-of-Africa (OutOfAfrica_3G09) per class (neutral regions and selective sweeps) and each population has 64 individuals. The simulations are of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. There are 128 SNPs then extracted from the center and converted into images for testing based on the model generated from the first quick command.
 
 
-Generate the testing datasets for scanning and test on an existing trained model (Mode 2)
+#### Example3: Generate the testing datasets for scanning and test on an existing trained model (Mode 2)
 ```
 bash sr-toolchain.sh -m 2 -a 10 -o Mode1 -N Mode1 -n 1 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -i RAiSD_Model.Mode0Model -L 500000
 ```
 This command is to generate 1 simulation of YRI population with the demographic model of three population out-of-Africa (OutOfAfrica_3G09) under a selective sweep and the population has 64 individuals. The simulation is of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. There are 10 genomic windows with 128 SNPs extracted and converted into images for scanning based on the model generated from the first quick command.
 
 
-Generate the datasets, train and test the deep learning model (Mode 3)
+#### Example4: Generate the datasets, train and test the deep learning model (Mode 3)
 ```
 bash sr-toolchain.sh -m 3 -a 10 -o Mode3 -N Mode3 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
 This command is to generate 20 simulations of YRI population with the demographic model of three population out-of-Africa (OutOfAfrica_3G09) per class (neutral regions and selective sweeps) and each population has 64 individuals for CNN training, while 2 simulatons per class are generated for testing. The simulations are of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. There are 128 SNPs then extracted from the center and converted into images for CNN training and testing.
 
 
-Generate the training datasets and train the deep learning model (Mode 4)
+#### Example5: Generate the training datasets and train the deep learning model (Mode 4)
 ```
 bash sr-toolchain.sh -m 4 -a 10 -o Mode4 -N Mode4 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10 -L 500000
 ```
