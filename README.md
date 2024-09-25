@@ -1,7 +1,7 @@
 # Deep_Catalog
 
 ## About
-Deep_Catalog is a deep-learning-model generator for detecting selective sweeps based on stdpopsim and RAiSD-AI. It utilizes stdpopsim to simulate the datasets and uses RAiSD-AI to train and test the models.
+Deep_Catalog is a deep-learning-model generator for detecting selective sweeps based on stdpopsim (https://popsim-consortium.github.io/stdpopsim-docs/stable/index.html) and RAiSD-AI (https://github.com/alachins/raisd-ai). It utilizes stdpopsim to simulate the datasets and uses RAiSD-AI to train and test the models.
 
 ## Quick environment setup and running examples with command lines
 It is necessary to get Anaconda installed ready. The installation of Anaconda can be found via https://www.anaconda.com/. For more details, please read the following sections.
