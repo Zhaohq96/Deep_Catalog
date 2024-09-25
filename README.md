@@ -34,7 +34,7 @@ In the following examples, we simulated Yoruba (YRI) populations using the three
 ```
 bash sr-toolchain.sh -m 0 -a 10 -o Mode0 -N Mode0 -n 20 -d OutOfAfrica_3G09 -g PyrhoYRI_GRCh38 -p YRI -l 0 -r 1000000 -c chr1 -s 64 -W 128 -b 1 -T 0 -e 10
 ```
-This command is to generate 20 simulations of YRI population with the demographic model of three population out-of-Africa (OutOfAfrica_3G09) per class (neutral regions and selective sweeps) and each population has 64 individuals. The simulations are of chromosome 1 with pyrho population-specific map for YRI (PyrhoYRI_GRCh38) and the length of simulated genome is 1000000 with the left boundary of 0 and the right boundary of 1000000. There are 128 SNPs then extracted from the center and converted into images for CNN training.
+This command is to generate 20 aforementioned simulations for each class (neutrality and sweep) and then train a CNN model. 
 
 
 #### Example2: Generate the testing datasets for classfication and test on an existing trained model (Mode 1)
