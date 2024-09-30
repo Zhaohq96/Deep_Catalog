@@ -17,7 +17,7 @@ def concatenate_vcf_files(path):
 	
 	for i, input_vcf in enumerate(vcf_files):
 		output_vcf = f"modified_vcfs/modified_{i}.vcf"
-		chrom_id = f"chr{i+1}"
+		chrom_id = f"Simulation{i+1}"
 		
 		with open("chr_map.txt", "w") as chr_map:
         		chr_map.write(f"0\t{chrom_id}\n")

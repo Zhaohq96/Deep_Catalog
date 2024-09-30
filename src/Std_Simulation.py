@@ -4,7 +4,7 @@ import sys, time, os, shutil
 import random
 import string
 
-def simulator(seed, catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_size, num_sam, num_pop, sim_type, sel_coef, mut_gen_time, min_fre, scaling, output):
+def simulator(seed, catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_size, num_sam, num_pop, sim_type, DFE, sel_coef, mut_gen_time, min_fre, scaling, output):
     
     # Get catalog and basic information	
 	species = stdpopsim.get_species(catalog)
@@ -38,6 +38,7 @@ def simulator(seed, catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_si
 	    mutation_generation_ago=int(mut_gen_time),
 	    min_freq_at_end=float(min_fre),
 	)
+		
 
     # Generate simulations
 #	random_numbers = random.sample(range(1, 10000000), int(num_pop))
@@ -53,7 +54,10 @@ def simulator(seed, catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_si
 	
     ## Generate neutral simulations
 	if(sim_type=="neutral"):
+		k=1
+		print("Start neutrality simulation!")
 		for val in range(int(seed), int(seed) + int(num_pop)):	
+			print(f"Simulation {k} starts! Seed: {val}")
 			ts_sim = engine.simulate(
 			    model,
 			    contig,
@@ -64,22 +68,47 @@ def simulator(seed, catalog, demo_model, chrm, gen_map, Left, Right, pop, pop_si
 			    slim_burn_in=0.1,
 			)
 			with open(str(output) + "/simulation" + str(val) + ".vcf", "w") as vcf_file:
-	    			ts_sim.write_vcf(vcf_file, contig_id="0")	    			
+	    			ts_sim.write_vcf(vcf_file, contig_id="0")	
+			k=k+1	    		    			
     
     ## Generate simulations with hard sweep    
 	elif(sim_type=="sweep"):
-		for val in range(int(seed), int(seed) + int(num_pop)):
-			ts_sim = engine.simulate(
-			    model,
-			    contig,
-			    samples,
-			    seed=int(val),
-			    extended_events=extended_events,
-			    slim_scaling_factor=int(scaling),
-			    slim_burn_in=0.1,
-			)
-			with open(str(output) + "/simulation" + str(val) + ".vcf", "w") as vcf_file:
-	    			ts_sim.write_vcf(vcf_file, contig_id="0")
+		k=1
+		print("Start sweep simulation!")
+		## Without DFE
+		if(DFE=="None"):
+			for val in range(int(seed), int(seed) + int(num_pop)):
+				print(f"Simulation {k} starts! Seed: {val}")
+				ts_sim = engine.simulate(
+				    model,
+				    contig,
+				    samples,
+				    seed=int(val),
+				    extended_events=extended_events,
+				    slim_scaling_factor=int(scaling),
+				    slim_burn_in=0.1,
+				)
+				with open(str(output) + "/simulation" + str(val) + ".vcf", "w") as vcf_file:
+		    			ts_sim.write_vcf(vcf_file, contig_id="0")
+				k=k+1
+		## With DFE
+		else:
+			dfe = species.get_dfe(DFE)
+			contig.add_dfe(intervals=np.array([[0, int(contig.length)]]), DFE=dfe)
+			for val in range(int(seed), int(seed) + int(num_pop)):	
+				print(f"Simulation {k} starts! Seed: {val}")
+				ts_sim = engine.simulate(
+				    model,
+				    contig,
+				    samples,
+				    seed=int(val),
+				    # no extended events
+				    slim_scaling_factor=int(scaling),
+				    slim_burn_in=0.1,
+				)
+				with open(str(output) + "/simulation" + str(val) + ".vcf", "w") as vcf_file:
+		    			ts_sim.write_vcf(vcf_file, contig_id="0")	
+				k=k+1
 	    		
 	else:
 		print("The simulated region should be neutral or a sweep.")

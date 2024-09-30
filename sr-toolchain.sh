@@ -16,6 +16,7 @@ help_func(){
 	echo -e '\t-P: population size (int), it is ineffective when indicating a specific demographic model (default: 100000)'
 	echo -e '\t-s: the number of samples (int) (default: 50)'
 	echo -e '\t-n: the number of populations/simulations (int) (default: 1)'
+	echo -e '\t-E: the distribution of fitness effects (default: None)'
 	echo -e '\t-S: selection coefficient (float) (default: 0.5)'
 	echo -e '\t-t: the generation time of selective sweeps (int) (default: 1000)'
 	echo -e '\t-f: the minimum frequency at the end (float) (default: 1)'
@@ -75,6 +76,7 @@ population="pop_0"
 popsize=100000
 numsam=50
 numpop=1
+DFE="None"
 selcoef=0.5
 gentime=1000
 minfre=1
@@ -88,7 +90,7 @@ arc="FAST-NN"
 grid=10
 distance=1000
 
-while getopts "hI:C:H:d:c:g:l:r:p:P:s:n:T:S:t:f:a:W:b:N:e:b:A:i:m:G:D:L:o:" opt
+while getopts "hI:C:H:d:c:g:l:r:p:P:s:n:T:E:S:t:f:a:W:b:N:e:b:A:i:m:G:D:L:o:" opt
 do
 	case "${opt}" in
 		h) help_func;;
@@ -105,6 +107,7 @@ do
 		s) numsam=${OPTARG};;
 		n) numpop=${OPTARG};;
 		T) typ=${OPTARG};;
+		E) DFE=${OPTARG};;
 		S) selcoef=${OPTARG};;
 		t) gentime=${OPTARG};;
 		f) minfre=${OPTARG};;
@@ -135,9 +138,9 @@ testseed=$(($seed + $numpop))
 
 if [ "$mode" == "0" ]; then		# Training data generation and model training
 	
-	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m neutral -a $scalingfactor -o "$outpath"/RAW/NEUTRAL
+	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m neutral -a $scalingfactor -o "$outpath"/RAW/NEUTRAL -D $DFE
 
-	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SWEEP
+	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SWEEP -D $DFE
 
 
 	if [ "$bin" == "0" ]; then
@@ -159,9 +162,9 @@ if [ "$mode" == "0" ]; then		# Training data generation and model training
 
 elif [ "$mode" == "1" ]; then	# Testing data generation and testing based on an already-trained model
 
-	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m neutral -a $scalingfactor -o "$outpath"/RAW/NEUTRAL
+	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m neutral -a $scalingfactor -o "$outpath"/RAW/NEUTRAL -D $DFE
 
-	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SWEEP
+	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SWEEP -D $DFE
 	
 	if [ "$bin" == "0" ]; then
 		./RAiSD-AI -op IMG-GEN -n "$ID"TestingData -I "$outpath"/RAW/NEUTRAL/Simulations.txt -icl neutralTE -L $length -its $center -w $width -f -frm -typ $typ -O
@@ -180,10 +183,10 @@ elif [ "$mode" == "1" ]; then	# Testing data generation and testing based on an 
 	
 elif [ "$mode" == "2" ]; then	# Tesing data generation and scanning based on an already-trained model
 	if [ "$haploid" == "0" ]; then
-		python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SCAN
+		python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SCAN -D $DFE
 	
 	elif [ "$haploid" == "1" ]; then
-		python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $(($numsam * 2)) -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SCAN
+		python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $(($numsam * 2)) -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SCAN -D $DFE
 		
 	fi
 	
@@ -191,13 +194,13 @@ elif [ "$mode" == "2" ]; then	# Tesing data generation and scanning based on an 
 
 elif [ "$mode" == "3" ]; then	# Training & tesing data generation, training the model on training dataset and tesing on the trained model
 	
-	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m neutral -a $scalingfactor -o "$outpath"/RAW/TRAIN/NEUTRAL
+	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m neutral -a $scalingfactor -o "$outpath"/RAW/TRAIN/NEUTRAL -D $DFE
 
-	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/TRAIN/SWEEP
+	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/TRAIN/SWEEP -D $DFE
 	
-	python Data_Generation.py -i $testseed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $testing -m neutral -a $scalingfactor -o "$outpath"/RAW/TEST/NEUTRAL
+	python Data_Generation.py -i $testseed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $testing -m neutral -a $scalingfactor -o "$outpath"/RAW/TEST/NEUTRAL -D $DFE
 
-	python Data_Generation.py -i $testseed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $testing -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/TEST/SWEEP
+	python Data_Generation.py -i $testseed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $testing -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/TEST/SWEEP -D $DFE
 
 
 	if [ "$bin" == "0" ]; then
@@ -226,9 +229,9 @@ elif [ "$mode" == "3" ]; then	# Training & tesing data generation, training the 
 
 elif [ "$mode" == "4" ]; then		# Training data generation, model training and scanning
 	
-	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m neutral -a $scalingfactor -o "$outpath"/RAW/TRAIN/NEUTRAL
+	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m neutral -a $scalingfactor -o "$outpath"/RAW/TRAIN/NEUTRAL -D $DFE
 
-	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/TRAIN/SWEEP
+	python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n $numpop -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/TRAIN/SWEEP -D $DFE
 
 
 	if [ "$bin" == "0" ]; then
@@ -247,10 +250,10 @@ elif [ "$mode" == "4" ]; then		# Training data generation, model training and sc
 	./RAiSD-AI -op MDL-GEN -n "$ID"Model -I RAiSD_Images."$ID"TrainingData -arc $arc -e $epoch -f -O
 	
 	if [ "$haploid" == "0" ]; then
-		python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n 1 -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SCAN
+		python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $numsam -n 1 -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SCAN -D $DFE
 	
 	elif [ "$haploid" == "1" ]; then
-		python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $(($numsam * 2)) -n 1 -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SCAN
+		python Data_Generation.py -i $seed -C $catalog -d $demography -c $chro -g $genmap -l $left -r $right -p $population -P $popsize -s $(($numsam * 2)) -n 1 -m sweep -S $selcoef -t $gentime -f $minfre -a $scalingfactor -o "$outpath"/RAW/SCAN -D $DFE
 		
 	fi
 	
