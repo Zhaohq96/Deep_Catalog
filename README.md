@@ -89,6 +89,7 @@ Data generation parameter description
 	-P: population size (int), it is ineffective when indicating a specific demographic model (default: 100000)
 	-s: the number of samples (int) (default: 50)
 	-n: the number of populations/simulations (int) (default: 1)
+	-E: the distribution of fitness effects (default: None)
 	-S: selection coefficient (float) (default: 0.5)
 	-t: the generation time of selective sweeps (int) (default: 1000)
 	-f: the minimum frequency at the end (float) (default: 1)
@@ -124,10 +125,6 @@ If -m in 2:
 
 If -m in 4:
 	-H: specify if the catalog is haploid (0) or diploid (1) (int) (default: 1)
-	-N: a unique run ID that is used to name the output files of RAiSD-AI, i.e., the info file and the report(s) (str) (default: None)
-	-W: window size (int) (default: 50)
-	-A: a specific deep learning archtecture (str) (default: FAST-NN)
-	-e: the number of epochs (int) (default: 10)
 	-L: provides the selection target (in basepairs) and calculates the average distance (over all datasets in the input file) between the selection target and the reported locations (int) (default: None)
 	-D: provides a maximum distance from the selection target (in base pairs) to calculate success rates, i.e., reported locations in the proximity of the target of selection (provided via -T) (int) (default: 50)
 	-G: grid size (int) (default: 10)
