@@ -135,12 +135,11 @@ If -m in 4:
 Deep_Catalog leverages stdpopsim to generate genomic simulations and utilizes an initial seed to conduct multiple simulations and concatenates the outputs into a single VCF file.
 
 ### Required options
-Deep_Catalog has built-in default values for all data generation options except the output path. It requires users to specify a output path by _-o output_path_.
+Deep_Catalog has built-in default values for all data generation options except the output path. It requires users to specify a output path by ``-o output_path``.
 
 ### General options
 Deep_Catalog can be used to generate all possible demographic models supported by stdpopsim. There are following options to generate a neutral simulation.
 ```
-	-I: an initial seed for simulation (int) (default: 1)
 -C: to specify the catalog to be simulated (str) (default: HomSap)
 -d: to specify a specific demographic model based on the sumulated catalog (str) (default: None)
 -c: which chromosome to be simulated (str) (default: chr1)
@@ -151,14 +150,20 @@ Deep_Catalog can be used to generate all possible demographic models supported b
 -P: the population size of simulations (int), it is ineffective when indicating a specific demographic model (default: 100000)
 -s: the number of samples to output (int) (default: 50)
 -n: the number of populations/simulations (int) (default: 1)
-	
-	-a: scaling factor to accelerate simulation (int) (default: 1)
-	-o: output path of simulation (str) (default: None)
 ```
+
 ### Options for sweeps
+Deep_Catalog utilizes the following options to simulate selections. When ``-E`` is enabled, other options are invalid.
 ```
--E: the distribution of fitness effects (default: None)
--S: selection coefficient (float) (default: 0.5)
--t: the generation time of selective sweeps (int) (default: 1000)
--f: the minimum frequency at the end (float) (default: 1)
+-E: to specify a distribution of fitness effects based on the catalog (default: None)
+-S: the selection coefficient (float) (default: 0.5)
+-t: how many generations ago that mutations occur (int) (default: 1000)
+-f: the minimum frequency at the end of the simulation (float) (default: 1)
+```
+
+### Additional options
+Deep_catalog allows users to specify an initial seed ``-I`` of simulations for reproducing and also a scaling factor ``-a`` to accelerate simulating. However, the users should be very careful to indicate the scaling factor as it rescales the population size and etc., which could result in dissimilar data compared with unscaling.
+```
+-I: an initial seed for simulation, the seed of the next simulation will add 1 automatically (int) (default: 1)
+-a: scaling factor to accelerate simulation (int) (default: 1)
 ```
