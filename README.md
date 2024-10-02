@@ -130,3 +130,6 @@ If -m in 4:
 	-G: grid size (int) (default: 10)
 	-i: the path to an existing training model (str) (default: None)
 ```
+
+## Genomic data generation options
+Deep_Catalog leverages stdpopsim to generate genomic simulations and utilizes an initial seed to conduct multiple simulations and concatenates the outputs into a single VCF file.
