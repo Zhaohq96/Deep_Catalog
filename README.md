@@ -134,24 +134,31 @@ If -m in 4:
 ## Genomic data generation options
 Deep_Catalog leverages stdpopsim to generate genomic simulations and utilizes an initial seed to conduct multiple simulations and concatenates the outputs into a single VCF file.
 
+### Required options
+Deep_Catalog has built-in default values for all data generation options except the output path. It requires users to specify a output path by _-o output_path_.
+
 ### General options
 Deep_Catalog can be used to generate all possible demographic models supported by stdpopsim. There are following options to generate a neutral simulation.
 ```
 	-I: an initial seed for simulation (int) (default: 1)
-	-C: to specify the catalog to be simulated (str) (default: HomSap)
-	-d: to specify a specific demographic model based on the sumulated catalog (str) (default: None)
-	-c: which chromosome to be simulated (str) (default: chr1)
-	-g: to specifiy a genome map of the catalog (str) (default: None)
-	-l: the left coordinate of the chromosome (int) (default: 1000000)
-	-r: the right coordinate of the chromosome (int) (default: 2000000)
-	-p: to monitor the specific population during simulation (str) (default: pop_0)
-	-P: the population size of simulations (int), it is ineffective when indicating a specific demographic model (default: 100000)
-	-s: the number of samples (int) (default: 50)
-	-n: the number of populations/simulations (int) (default: 1)
-	-E: the distribution of fitness effects (default: None)
-	-S: selection coefficient (float) (default: 0.5)
-	-t: the generation time of selective sweeps (int) (default: 1000)
-	-f: the minimum frequency at the end (float) (default: 1)
+-C: to specify the catalog to be simulated (str) (default: HomSap)
+-d: to specify a specific demographic model based on the sumulated catalog (str) (default: None)
+-c: which chromosome to be simulated (str) (default: chr1)
+-g: to specifiy a genome map of the catalog (str) (default: None)
+-l: the left coordinate of the chromosome (int) (default: 1000000)
+-r: the right coordinate of the chromosome (int) (default: 2000000)
+-p: to monitor the specific population during simulation (str) (default: pop_0)
+-P: the population size of simulations (int), it is ineffective when indicating a specific demographic model (default: 100000)
+-s: the number of samples to output (int) (default: 50)
+-n: the number of populations/simulations (int) (default: 1)
+	
 	-a: scaling factor to accelerate simulation (int) (default: 1)
 	-o: output path of simulation (str) (default: None)
+```
+### Options for sweeps
+```
+-E: the distribution of fitness effects (default: None)
+-S: selection coefficient (float) (default: 0.5)
+-t: the generation time of selective sweeps (int) (default: 1000)
+-f: the minimum frequency at the end (float) (default: 1)
 ```
