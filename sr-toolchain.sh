@@ -64,7 +64,7 @@ help_func(){
 
 # Initialization
 
-seed=1
+seed='random'
 catalog="HomSap"
 haploid=1
 demography="None"
@@ -79,7 +79,7 @@ numpop=1
 DFE="None"
 selcoef=0.5
 gentime=1000
-minfre=1
+minfre="None"
 scalingfactor=1
 width=50
 bin=0
@@ -131,7 +131,11 @@ length=$(($right - $left))
 center=$(($length / 2))
 testing=$(($numpop / 10))
 scansam=$(($numsam * 2))
-testseed=$(($seed + $numpop))
+if [ "$seed" == "random" ]; then
+	testseed=$seed
+else
+	testseed=$(($seed + $numpop))
+fi
 
 
 
