@@ -43,7 +43,7 @@ def help():
 def main(argv):
 
     # Initializing
-	seed = 1
+	seed = "random"
 	catalog = "HomSap"
 	demo_model = "None"
 	chrm = "chr1"
@@ -58,7 +58,7 @@ def main(argv):
 	DFE = "None"
 	sel_coef = 0.5
 	mut_gen_time = 1000
-	min_fre = 1
+	min_fre = "None"
 	scaling = 1
 	
 	
